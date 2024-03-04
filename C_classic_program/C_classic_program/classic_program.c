@@ -244,9 +244,8 @@
 //void shell_sort(int arr[], int n) {
 //	int i,j,temp,gap;
 //    for (gap = n/2; gap > 0; gap /= 2) {
-//        for (i = gap; i < n; i += 1) {
+//        for (i = gap; i < n; i++) {
 //            temp = arr[i];
-//            j;
 //            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
 //                arr[j] = arr[j - gap];
 //            arr[j] = temp;
@@ -482,29 +481,24 @@
 //
 //// 判断是否为质数
 //int isPrime(int n){
-//	int i;
-//    if(n<=1) 
-//		return 0;
+//	  int i;
+//    if(n<=1) return 0;
 //    for(i=2;i*i<=n;i++){
-//        if(n%i==0) 
-//			return 0;
+//        if(n%i==0) return 0;
 //    }
 //    return 1;
 //}
 //
 //// 验证哥德巴赫猜想
 //void verifyGoldbach(int limit) {
-//    int n,i,found;
-//	for (n=4;n<=limit;n+=2){
-//        found = 0;
-//        for(i=2;i<=n/2;i++){
-//            if(isPrime(i) && isPrime(n - i)){
-//                found = 1;
+//    int i,j;
+//	  for (i=4;i<=limit;i+=2){
+//        for(j=2;j<=i/2;j++){
+//            if(isPrime(j) && isPrime(i - j))
 //                break;
-//            }
 //        }
-//        if(!found){
-//            printf("哥德巴赫猜想在%d处失败。\n", n);
+//        if(j>i/2){
+//            printf("哥德巴赫猜想在%d处失败。\n", i);
 //            return;
 //        }
 //    }
@@ -604,7 +598,7 @@
 //    int start,end,i,j;
 //    printf("请输入一个数段的起始和结束（用空格隔开）：");
 //    scanf("%d %d", &start, &end);
-//	for(i = start; i <= end; i++) {
+//	  for(i = start; i <= end; i++) {
 //        for(j = 1; j * j <= i; j++) {
 //            if(j * j == i) {
 //                printf("%d 是一个完全平方数\n", i);
@@ -801,35 +795,22 @@
 
 //#include <stdio.h>
 //
-//// 检查字符是否为英文字母
-//int isAlpha(char c) {
-//    return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
-//}
-//
-//int main() {
-//    char c;
-//    int wordCount = 0;
-//    int inWord = 0;
-//
-//    printf("请输入一段文本：\n");
-//
-//    while ((c = getchar()) != '\n') {
-//        if (!isAlpha(c)) {
-//            if (inWord) {
-//                inWord = 0;
-//                wordCount++;
-//            }
-//        } 
-//		else {
-//            inWord = 1;
-//        }
-//    }
-//
-//    if (inWord) wordCount++;  // 计算最后一个单词（如果存在）
-//
-//    printf("单词数量：%d\n", wordCount);
-//
-//    return 0;
+//int main(){
+//	char str[100];
+//	int count=0,sign=0,i;
+//	printf("请输入字符串：");
+//	gets(str);
+//	for(i=0;str[i] != '\0';i++){
+//		if(((str[i]>='a'&&str[i]<='z')||(str[i]>='A'&&str[i]<='Z'))&& sign == 0){
+//			count++;
+//			sign = 1;
+//		}
+//		if(!((str[i]>='a'&&str[i]<='z')||(str[i]>='A'&&str[i]<='Z'))){
+//			sign = 0;
+//		}
+//	}
+//	printf("单词个数 = %d\n",count);
+//	return 0;
 //}
 
 
@@ -915,7 +896,7 @@
 //    /* 初始化表格 */
 //    for (i = 0; i <= n; i++) {
 //        for (w = 0; w <= W; w++) {
-//            /* 表格的第一行和第一列都是0，因为这些子问题没有物品可以选择 */
+//            /* 表格的第一行和第一列都是0，如果没有物品可以选择（即i == 0）或者背包的当前容量为0（即w == 0），那么子问题的解就是0 */
 //            if (i == 0 || w == 0)
 //                K[i][w] = 0;
 //            /* 如果当前物品的重量小于或等于背包的剩余重量，我们可以选择是否放入这个物品 */

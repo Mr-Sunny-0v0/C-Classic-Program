@@ -167,7 +167,7 @@
 //            }
 //        }
 //        num[j+1] = temp;
-//    }
+//   }
 //
 //	printf("从小到大排序后：");
 //	for(i=0;i<5;i++){
@@ -189,26 +189,23 @@
 
 //#include <stdio.h>
 //
-//void quick_sort(int s[], int l, int r)
-//{
-//    if (l < r)
-//    {
-//        int i = l, j = r, x = s[l];
-//        while (i < j)
-//        {
-//            while(i < j && s[j] >= x) // 从右向左找第一个小于x的数
+//void quick_sort(int s[],int l,int r){
+//    if(l < r){
+//        int i=l, j=r, x=s[l];
+//        while(i<j){
+//            while(i<j && s[j]>=x) // 从右向左找第一个小于x的数
 //                j--;  
-//            if(i < j) 
+//            if(i<j) 
 //                s[i++] = s[j];
 //            
-//            while(i < j && s[i] < x) // 从左向右找第一个大于等于x的数
+//            while(i<j && s[i]<x) // 从左向右找第一个大于等于x的数
 //                i++;  
-//            if(i < j) 
+//            if(i<j) 
 //                s[j--] = s[i];
 //        }
 //        s[i] = x;
-//        quick_sort(s, l, i - 1); // 递归调用 
-//        quick_sort(s, i + 1, r);
+//        quick_sort(s,l,i-1); // 递归调用 
+//        quick_sort(s,i+1,r);
 //    }
 //}
 //
@@ -243,14 +240,21 @@
 //
 //void shell_sort(int arr[], int n) {
 //	int i,j,temp,gap;
-//    for (gap = n/2; gap > 0; gap /= 2) {
-//        for (i = gap; i < n; i++) {
-//            temp = arr[i];
-//            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
-//                arr[j] = arr[j - gap];
-//            arr[j] = temp;
-//        }
-//    }
+//	for(gap=n/2; gap>0; gap/=2){
+//		for(i=gap; i<n; i++){
+//			temp = arr[i];
+//			for(j=i; j>=gap; j-=gap){
+//				//如果比temp大把值往后移动一个gap
+//				if(arr[j-gap] >= temp){
+//					arr[j] = arr[j-gap];
+//				}
+//				else{
+//					break;
+//				}
+//			}
+//			arr[j] = temp;
+//		}
+//	}
 //}
 //
 //int main(){
@@ -494,8 +498,7 @@
 //    int i,j;
 //	  for (i=4;i<=limit;i+=2){
 //        for(j=2;j<=i/2;j++){
-//            if(isPrime(j) && isPrime(i - j))
-//                break;
+//            if(isPrime(j) && isPrime(i - j)) break;
 //        }
 //        if(j>i/2){
 //            printf("哥德巴赫猜想在%d处失败。\n", i);
@@ -555,25 +558,25 @@
 //    scanf("%d %d", &low, &high);
 //    printf("%d 和 %d 之间的水仙花数为: ", low, high);
 //
-//    for(i = low + 1; i < high; i++) {
+//    for(i=low+1; i<high; i++){
 //        temp2 = i;
 //        temp1 = i;
 //
 //        // 计算数字位数
-//        while (temp1 != 0) {
+//        while(temp1 != 0){
 //            temp1 /= 10;
 //            n++;
 //        }
 //
 //        // 计算每位数字的幂之和
-//        while (temp2 != 0) {
+//        while(temp2 != 0){
 //            remainder = temp2 % 10;
 //            result += pow(remainder,n);
 //            temp2 /= 10;
 //        }
 //
 //        // 如果结果等于原数，则打印
-//        if (result == i) {
+//        if(result == i){
 //            printf("%d ", i);
 //        }
 //
@@ -581,7 +584,6 @@
 //        n = 0;
 //        result = 0;
 //    }
-//
 //    return 0;
 //}
 
